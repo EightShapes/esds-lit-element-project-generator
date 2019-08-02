@@ -38,10 +38,11 @@ function formatNamespace(namespace) {
 
 export async function cli(args) {
   const options = await getProjectOptions();
+  let componentDirectoryName = normalizeName(options.componentName);
   let normalizedComponentName = `${formatNamespace(options.componentNamespace)}${normalizeName(options.componentName)}`;
   if (normalizedComponentName.includes('-')) {
     const pascalCaseComponentName = camelCase(normalizedComponentName, {pascalCase: true});
-    await createProject({...options, normalizedComponentName, pascalCaseComponentName});
+    await createProject({...options, normalizedComponentName, pascalCaseComponentName, componentDirectoryName});
   } else {
     console.log(`%s The component name must contain a hyphen. Consider including a namespace.\nThe name "${normalizedComponentName}" does not contain a hyphen`, chalk.red.bold('ERROR'));
   }

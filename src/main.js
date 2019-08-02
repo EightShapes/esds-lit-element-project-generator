@@ -42,7 +42,7 @@ function renameCopiedFiles(options) {
   ];
   renamableTemplateFiles.forEach(f => {
     const oldPath = `${options.targetDirectory}/${f}`;
-    const newPath = oldPath.replace('component', options.normalizedComponentName);
+    const newPath = oldPath.replace('src/component', `src/${options.normalizedComponentName}`);
     rename(oldPath, newPath);
   })
 }
@@ -50,7 +50,7 @@ function renameCopiedFiles(options) {
 export async function createProject(options) {
  options = {
    ...options,
-   targetDirectory: options.targetDirectory || `${process.cwd()}/${options.normalizedComponentName}`,
+   targetDirectory: options.targetDirectory || `${process.cwd()}/${options.componentDirectoryName}`,
  };
 
  const currentFileUrl = import.meta.url;

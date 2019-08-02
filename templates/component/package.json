@@ -4,10 +4,13 @@
   "description": "",
   "main": "src/[component-name].js",
   "scripts": {
-    "start": "browser-sync start -c browser-sync-config.js",
+    "start": "npm run watch-build | browser-sync start --watch --config browser-sync-config.js --ignore 'src/**/*'",
     "build": "npm run build-ie && npm run build-esm",
     "build-ie": "rollup -c rollup.config.ie.js",
-    "build-esm": "rollup -c rollup.config.js"
+    "build-esm": "rollup -c rollup.config.js",
+    "watch-build": "npm run watch-build-ie | npm run watch-build-esm",
+    "watch-build-ie": "rollup --watch -c rollup.config.ie.js",
+    "watch-build-esm": "rollup --watch -c rollup.config.js"
   },
   "author": "Kevin Powell <kevinmpowell@gmail.com>",
   "license": "ISC",

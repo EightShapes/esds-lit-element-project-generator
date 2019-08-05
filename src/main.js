@@ -50,7 +50,7 @@ function renameCopiedFiles(options) {
 export async function createProject(options) {
  options = {
    ...options,
-   targetDirectory: options.targetDirectory || `${process.cwd()}/${options.componentDirectoryName}`,
+   targetDirectory: options.targetDirectory || `${process.cwd()}/${options.normalizedComponentName}`,
  };
 
  const currentFileUrl = import.meta.url;
